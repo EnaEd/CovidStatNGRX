@@ -1,18 +1,37 @@
+import { TotalInfectedEffects } from './components/total-infected/total-infected-store/total-infected.effects';
+import { HttpService } from './services/http.service';
+import { TotalInfectedComponent } from './components/total-infected/total-infected.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
+import { NgModule, Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { HttpClientModule } from '@angular/common/http';
+import { appReducers } from './store/app.reducers';
+import { from } from 'rxjs';
+import { DetailInfectedComponent } from './components/detail-infected/detail-infected.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent, TotalInfectedComponent, DetailInfectedComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    StoreModule.forRoot(appReducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
+    EffectsModule.forRoot([TotalInfectedEffects]),
+    StoreRouterConnectingModule.forRoot(),
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [HttpService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

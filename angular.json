@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "CovidStatNGRX"
+    }
+  },
+  "defaultProject": "CovidStatNGRX",
+  "cli": {
+    "analytics": false
+  }
 }
