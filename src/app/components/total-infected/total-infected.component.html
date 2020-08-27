@@ -1,13 +1,18 @@
 <p>total-infected works!</p>
 
-<div>Confimed: {{ (totalInfected$ | async)?.totalInfected?.confirmed }}</div>
-<div>Deaths: {{ (totalInfected$ | async)?.totalInfected?.deaths }}</div>
-<div>Recovered: {{ (totalInfected$ | async)?.totalInfected?.recovered }}</div>
-<div>Location: {{ (totalInfected$ | async)?.totalInfected?.location }}</div>
+<div>Confimed: {{ (totalInfected$ | async)?.confirmed }}</div>
+<div>Deaths: {{ (totalInfected$ | async)?.deaths }}</div>
+<div>Recovered: {{ (totalInfected$ | async)?.recovered }}</div>
+<div>Location: {{ (totalInfected$ | async)?.location }}</div>
 <p>Get detail</p>
 
 <div>
   <input type="text" placeholder="country" [(ngModel)]="country" />
   <br />
-  <button (click)="onClick()">get detail</button>
+  <br />
+  <button (click)="getData()">get data</button>
+  <br />
+  <br />
+  <button (click)="getDetail()">get detail</button>
+  <button (click)="getCountry()">get country</button>
 </div>

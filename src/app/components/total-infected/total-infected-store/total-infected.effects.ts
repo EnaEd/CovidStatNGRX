@@ -9,6 +9,7 @@ import {
   withLatestFrom,
   mergeMap,
   catchError,
+  exhaustMap,
 } from 'rxjs/operators';
 import { IAppState } from './../../../store/app.state';
 import {
@@ -16,14 +17,15 @@ import {
   TotalInfectedActionEnum,
   GetTotalInfectedSuccess,
 } from './total-infected.actions';
+import * as AppActions from './total-infected.actions';
 
 @Injectable()
 export class TotalInfectedEffects {
   totalInfected$ = createEffect(() =>
     this.actions$.pipe(
-      ofType<GetTotalInfected>(TotalInfectedActionEnum.GetTotalInfected),
-      mergeMap(() =>
-        this._infectedService.getTotalInfectedData().pipe(
+      ofType(AppActions.GetTotalInfected),
+      mergeMap((action) =>
+        this._infectedService.getTotalInfectedData(action.countryName).pipe(
           map((data) => ({
             type: TotalInfectedActionEnum.GetTotalInfectedSuccess,
             payload: data.data,

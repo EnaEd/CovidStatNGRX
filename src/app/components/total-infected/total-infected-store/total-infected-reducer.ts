@@ -1,30 +1,25 @@
-import {
-  TotalInfectedActions,
-  TotalInfectedActionEnum,
-} from './total-infected.actions';
+import { initialState } from './../../../../../../ngrx2/src/app/counter.reducer';
+import * as Actions from './total-infected.actions';
 import {
   initialTotalInfectedState,
   ITotalInfectedState,
 } from './total-infected-state';
+import { createReducer, on, State, Action } from '@ngrx/store';
+
+const reducer = createReducer(
+  initialTotalInfectedState,
+  on(Actions.GetTotalInfectedSuccess, (state, { payload }) => ({
+    ...state,
+    totalInfected: payload,
+  })),
+  on(Actions.LocationChange, (state, { location }) => ({
+    ...state,
+    totalInfected: { ...state.totalInfected, location },
+  }))
+);
 export function totalInfectedReducer(
-  state = initialTotalInfectedState,
-  action: TotalInfectedActions
+  state: ITotalInfectedState | undefined,
+  action: Action
 ) {
-  switch (action.type) {
-    case TotalInfectedActionEnum.GetTotalInfectedSuccess: {
-      console.log(action.payload);
-      return {
-        ...state,
-        totalInfected: action.payload,
-      };
-    }
-    case TotalInfectedActionEnum.GetTotalInfectedError: {
-      return {
-        ...state,
-        totalInfected: action.payload,
-      };
-    }
-    default:
-      return state;
-  }
+  return reducer(state, action);
 }

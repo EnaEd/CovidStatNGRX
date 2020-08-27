@@ -12,14 +12,21 @@ export class HttpService {
 
   constructor(private http: HttpClient) {}
 
-  getTotalInfectedData(): Observable<any> {
+  getTotalInfectedData(country = ''): Observable<any> {
     const headers = new HttpHeaders().set(
       'rapidapi-key',
       `4b321069aemshe46fd0bc10a3f04p114f22jsnbb274c9a6839`
     );
-
+    if (!Boolean(country)) {
+      return this.http.get<any>(
+        `https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total`,
+        {
+          headers: headers,
+        }
+      );
+    }
     return this.http.get<any>(
-      'https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total?rapidapi-key=4b321069aemshe46fd0bc10a3f04p114f22jsnbb274c9a6839',
+      `https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total?country=${country}`,
       {
         headers: headers,
       }
