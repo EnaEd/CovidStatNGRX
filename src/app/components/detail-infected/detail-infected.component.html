@@ -1,1 +1,14 @@
 <p>detail-infected works!</p>
+<button (click)="getCountry()">in your Country</button>
+<br />
+<br />
+<div *ngFor="let item of detailInfected$ | async">
+  <div>city: {{ item?.city }}</div>
+  <div>province:{{ item?.province }}</div>
+  <div>country:{{ item?.country }}</div>
+  <div>recovered:{{ item?.recovered }}</div>
+  <div>deaths:{{ item?.deaths }}</div>
+  <div>confirmed:{{ item?.confirmed }}</div>
+  <br />
+  <br />
+</div>

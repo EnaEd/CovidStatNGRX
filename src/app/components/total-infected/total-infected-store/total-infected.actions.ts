@@ -27,8 +27,3 @@ export const GetTotalInfectedError = createAction(
   TotalInfectedActionEnum.GetTotalInfectedError,
   props<{ payload: TotalInfectedModel }>()
 );
-
-// export type TotalInfectedActions =
-//   | GetTotalInfected
-//   | TotalInfectedSuccess
-//   | GetTotalInfectedError;

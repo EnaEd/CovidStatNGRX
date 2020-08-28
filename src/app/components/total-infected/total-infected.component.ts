@@ -1,15 +1,10 @@
 import { selectTotalInfected } from './../total-infected/total-infected-store/total-infected-selector';
-import { HttpService } from './../../services/http.service';
 import { TotalInfectedModel } from './../../models/total-infected.model';
 import { IAppState } from './../../store/app.state';
-import {
-  TotalInfectedActionEnum,
-  LocationChange,
-} from './total-infected-store/total-infected.actions';
+import { TotalInfectedActionEnum } from './total-infected-store/total-infected.actions';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import { ITotalInfectedState } from './total-infected-store/total-infected-state';
 import { Router } from '@angular/router';
 import * as AppActions from './total-infected-store/total-infected.actions';
 
@@ -28,11 +23,7 @@ export class TotalInfectedComponent implements OnInit {
     select(selectTotalInfected)
   );
 
-  constructor(
-    private store: Store<IAppState>,
-    private httpService: HttpService,
-    private router: Router
-  ) {}
+  constructor(private store: Store<IAppState>, private router: Router) {}
 
   getDetail() {
     this.router.navigateByUrl('/detail');
@@ -42,9 +33,6 @@ export class TotalInfectedComponent implements OnInit {
     this.store.dispatch(
       AppActions.GetTotalInfected({ countryName: normalizedCountry })
     );
-  }
-  getCountry() {
-    alert(this.country);
   }
   normalizeCountryName(): string {
     if (!Boolean(this.country)) {

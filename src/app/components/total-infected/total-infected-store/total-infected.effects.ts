@@ -1,16 +1,9 @@
 import { HttpService } from './../../../services/http.service';
 import { Injectable } from '@angular/core';
-import { Effect, Actions, ofType, createEffect } from '@ngrx/effects';
-import { select, Store } from '@ngrx/store';
-import { of, empty } from 'rxjs';
-import {
-  switchMap,
-  map,
-  withLatestFrom,
-  mergeMap,
-  catchError,
-  exhaustMap,
-} from 'rxjs/operators';
+import { Actions, ofType, createEffect } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+import { empty } from 'rxjs';
+import { map, mergeMap, catchError } from 'rxjs/operators';
 import { IAppState } from './../../../store/app.state';
 import {
   GetTotalInfected,

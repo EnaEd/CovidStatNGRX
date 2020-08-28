@@ -1,3 +1,4 @@
+import { DetailInfectedEffects } from './components/detail-infected/detail-infected-store/detail-infected-effects';
 import { TotalInfectedEffects } from './components/total-infected/total-infected-store/total-infected.effects';
 import { HttpService } from './services/http.service';
 import { TotalInfectedComponent } from './components/total-infected/total-infected.component';
@@ -28,7 +29,7 @@ import { DetailInfectedComponent } from './components/detail-infected/detail-inf
       maxAge: 25,
       logOnly: environment.production,
     }),
-    EffectsModule.forRoot([TotalInfectedEffects]),
+    EffectsModule.forRoot([TotalInfectedEffects, DetailInfectedEffects]),
     StoreRouterConnectingModule.forRoot(),
   ],
   providers: [HttpService],
